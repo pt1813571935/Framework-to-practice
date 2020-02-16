@@ -9,11 +9,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxUtils {
 
-    /**
-     * rxjava 线程切换统一处理
-     * @param <T>
-     * @return
-     */
+
     public static <T> FlowableTransformer<T,T> rxScheduler(){
         return new FlowableTransformer<T, T>() {
             @Override
