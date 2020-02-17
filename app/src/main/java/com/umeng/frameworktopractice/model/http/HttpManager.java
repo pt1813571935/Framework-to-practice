@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.umeng.frameworktopractice.apps.MyApp;
 import com.umeng.frameworktopractice.constants.Constant;
+import com.umeng.frameworktopractice.model.apis.MyApi;
 import com.umeng.frameworktopractice.utils.SystemUtils;
 
 import java.io.File;
@@ -32,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpManager {
 
     private static Cache cache;
-
+    private static MyApi myApi;
 
 
 
@@ -109,7 +110,16 @@ public class HttpManager {
      * @return
      */
 
-
+    public static MyApi getMyApi(){
+        synchronized (HttpManager.class){
+            if(myApi == null){
+                synchronized (HttpManager.class){
+                    myApi = getServerApis(Constant.Base_Wan_url,MyApi.class);
+                }
+            }
+        }
+        return myApi;
+    }
     //拦截器的实现类
     private static class Myintercepter implements Interceptor {
 
