@@ -18,6 +18,7 @@ public abstract class BaseActivity<V extends IBaseView,P extends IBasePresenter>
         setContentView(getLayout());
         context = this;
         initView();
+        //测试
         if (percenter == null){
             percenter = Createpersenter();
             percenter.attachView(this);
